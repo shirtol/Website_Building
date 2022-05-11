@@ -117,6 +117,20 @@ const searchStudents = (value, searchType) => {
     })
 }
 
+const getWeather = async (cityName) =>{
+    const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=c7655ed43d404d960e1709cac30f60be`);
+    const data = await res.json();
+    const current = data.list[0];
+    return new Promise( async (resolve,reject) => {
+      resolve({
+        city: data.city.name,
+        country: data.city.country,
+        temp: (current.main.temp - 273.15).toFixed(1) + "°",
+        description: current.weather[0].description,
+      });
+    });
+}
+
 studentController.createTable();
 
 globalListener();
