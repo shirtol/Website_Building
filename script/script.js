@@ -80,6 +80,17 @@ const convertToInput = (rowChildren, target) => {
     });
 };
 
+const enterListener = () =>{
+    document.querySelector(".table").addEventListener("keyup", (e) => {
+        const childrenArr = [...e.target.parentElement.parentElement.children];
+        if(e.key === "Enter" || e.key === "Escape"){
+            let idx = e.key === "Enter" ? 3 : 2;
+            const btn = e.target.parentElement.parentElement.lastChild.children[idx];
+            cancelOrConfirm(childrenArr, btn);
+        }
+    })
+}
+
 const searchListener = () => {
     const input = document.querySelector("#search");
     const select = document.querySelector("#searchBy");
@@ -110,6 +121,7 @@ studentController.createTable();
 
 globalListener();
 searchListener();
+enterListener();
 
 studentController.sortCol("id", false);
 
