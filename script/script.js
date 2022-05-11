@@ -24,21 +24,23 @@ const globalListener = () => {
     document.querySelector(".container").addEventListener("click", (e) => {
         const childrenArr = [...e.target.parentElement.parentElement.children];
         if (e.target.classList.contains("editBtn")) {
-            e.target.nextSibling.style.display = "none";
-            e.target.nextSibling.nextSibling.style.display = "block";
-            e.target.nextSibling.nextSibling.nextSibling.style.display =
-                "block";
-            e.target.style.display = "none";
-            convertToInput(childrenArr);
-        }
-        if (
+            convertToInput(childrenArr, e.target);
+        }else if (
             e.target.classList.contains("cancelBtn") ||
             e.target.classList.contains("confirmBtn")
         ) {
             cancelOrConfirm(childrenArr, e.target);
+        } else {
+            checkDelete(e.target);
         }
     });
 };
+
+const checkDelete = (target) => {
+    if (target.classList.contains("deleteBtn")){
+        target.parentElement.parentElement.remove();
+    }
+}
 
 const cancelOrConfirm = (rowChildren, target) => {
     document.querySelector(`#cancelBtn${target.idNum}`).style.display = "none";
@@ -56,7 +58,12 @@ const cancelOrConfirm = (rowChildren, target) => {
     });
 };
 
-const convertToInput = (rowChildren) => {
+const convertToInput = (rowChildren, target) => {
+    target.nextSibling.style.display = "none";
+    target.nextSibling.nextSibling.style.display = "block";
+    target.nextSibling.nextSibling.nextSibling.style.display =
+                "block";
+    target.style.display = "none";
     rowChildren.forEach((child) => {
         if (child.classList.contains("cell")) {
             const input = document.createElement("input");
