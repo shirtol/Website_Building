@@ -1,7 +1,9 @@
-import {studentController} from "./script.js";
+import { studentController } from "./script.js";
 
 export class StudentUI {
-    constructor() {}
+    constructor() {
+        this.titleRowEl = document.querySelector(".row");
+    }
 
     addButtons = (row) => {
         const btnContainer = document.createElement("div");
@@ -28,9 +30,7 @@ export class StudentUI {
         studentController.rowCounter++;
     };
 
-    
-
-    addConfirmBtn = (container) =>{
+    addConfirmBtn = (container) => {
         const confirmBtn = document.createElement("button");
         confirmBtn.textContent = "Confirm";
         confirmBtn.id = `confirmBtn${studentController.rowCounter}`;
@@ -38,9 +38,9 @@ export class StudentUI {
         confirmBtn.classList.add("confirmBtn");
         confirmBtn.style.display = "none";
         container.appendChild(confirmBtn);
-    }
+    };
 
-    addCancelBtn = (container) =>{
+    addCancelBtn = (container) => {
         const cancelBtn = document.createElement("button");
         cancelBtn.textContent = "Cancel";
         cancelBtn.id = `cancelBtn${studentController.rowCounter}`;
@@ -48,25 +48,32 @@ export class StudentUI {
         cancelBtn.classList.add("cancelBtn");
         cancelBtn.style.display = "none";
         container.appendChild(cancelBtn);
-    }
+    };
 
-    addDeleteBtn = (container) =>{
+    addDeleteBtn = (container) => {
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
         deleteBtn.id = `deleteBtn${studentController.rowCounter}`;
         deleteBtn.idNum = studentController.rowCounter;
         deleteBtn.classList.add("deleteBtn");
         container.appendChild(deleteBtn);
-    }
+    };
 
-    addEditBtn = (container) =>{
+    addEditBtn = (container) => {
         const editBtn = document.createElement("button");
         editBtn.textContent = "Edit";
         editBtn.id = `editBtn${studentController.rowCounter}`;
         editBtn.idNum = studentController.rowCounter;
         editBtn.classList.add("editBtn");
         container.appendChild(editBtn);
-    }
+    };
+
+    createTable = (studentsArr) => {
+        const studentsContainer = document.createElement("div");
+        studentsContainer.classList.add("container");
+        studentsArr.forEach((student) =>
+            this.addRow(student, studentsContainer)
+        );
+        document.querySelector(".container").appendChild(studentsContainer);
+    };
 }
-
-
