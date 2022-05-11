@@ -36,40 +36,48 @@ export class StudentUI {
     };
 
     addConfirmBtn = (container) => {
-        const confirmBtn = document.createElement("button");
+        const confirmBtn = document.createElement("div");
         confirmBtn.textContent = "Confirm";
         confirmBtn.id = `confirmBtn${studentController.rowCounter}`;
         confirmBtn.idNum = studentController.rowCounter;
         confirmBtn.classList.add("confirmBtn");
+        confirmBtn.classList.add("btn");
+        confirmBtn.classList.add("tbBtn");
         confirmBtn.style.display = "none";
         container.appendChild(confirmBtn);
     };
 
     addCancelBtn = (container) => {
-        const cancelBtn = document.createElement("button");
+        const cancelBtn = document.createElement("div");
         cancelBtn.textContent = "Cancel";
         cancelBtn.id = `cancelBtn${studentController.rowCounter}`;
         cancelBtn.idNum = studentController.rowCounter;
         cancelBtn.classList.add("cancelBtn");
+        cancelBtn.classList.add("btn");
+        cancelBtn.classList.add("tbBtn");
         cancelBtn.style.display = "none";
         container.appendChild(cancelBtn);
     };
 
     addDeleteBtn = (container) => {
-        const deleteBtn = document.createElement("button");
+        const deleteBtn = document.createElement("div");
         deleteBtn.textContent = "Delete";
         deleteBtn.id = `deleteBtn${studentController.rowCounter}`;
         deleteBtn.idNum = studentController.rowCounter;
         deleteBtn.classList.add("deleteBtn");
+        deleteBtn.classList.add("btn");
+        deleteBtn.classList.add("tbBtn");
         container.appendChild(deleteBtn);
     };
 
     addEditBtn = (container) => {
-        const editBtn = document.createElement("button");
+        const editBtn = document.createElement("div");
         editBtn.textContent = "Edit";
         editBtn.id = `editBtn${studentController.rowCounter}`;
         editBtn.idNum = studentController.rowCounter;
         editBtn.classList.add("editBtn");
+        editBtn.classList.add("btn");
+        editBtn.classList.add("tbBtn");
         container.appendChild(editBtn);
     };
 
