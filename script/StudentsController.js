@@ -48,9 +48,20 @@ export class StudentsController {
     createTable = () => this.studentUI.createTable(this.students);
 
     sortByProperty = (a, b, property) => {
-        if (a[property] < b[property]) return -1;
-        if (a[property] > b[property]) return 1;
-        return 0;
+        if (property === "name" || property === "last-name") {
+            console.log(a);
+            console.log(property);
+            return a[property].localeCompare(b[property], "heb");
+        } else if (property === "hobby") {
+            if (a[property].toLowerCase() < b[property].toLowerCase())
+                return -1;
+            if (a[property].toLowerCase() > b[property].toLowerCase()) return 1;
+            return 0;
+        } else {
+            if (a[property] < b[property]) return -1;
+            if (a[property] > b[property]) return 1;
+            return 0;
+        }
     };
 
     /**

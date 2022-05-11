@@ -19,8 +19,11 @@ export class StudentUI {
     addRow = (student, container) => {
         const properties = Student.props;
         const row = document.createElement("div");
+        if (!student.visibility) {
+            row.classList.add("hide");
+        }
         row.classList.add("row");
-        row.setAttribute(`data-number-${student.id}`,"");
+        row.setAttribute(`data-number-${student.id}`, "");
         properties.forEach((prop) => {
             const cell = document.createElement("div");
             cell.classList.add("cell");
