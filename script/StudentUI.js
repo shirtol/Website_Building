@@ -16,6 +16,17 @@ export class StudentUI {
         row.appendChild(btnContainer);
     };
 
+    createWeatherDiv = (cell) => {
+        const weatherContainer = document.createElement("div");
+        const cityContainer = document.createElement("div");
+        const cityWeather = document.createElement("div");
+        weatherContainer.classList.add("weather-box");
+
+        weatherContainer.appendChild(cityContainer);
+        weatherContainer.appendChild(cityWeather);
+        cell.appendChild(weatherContainer);
+    };
+
     addRow = (student, container) => {
         const properties = Student.props;
         const row = document.createElement("div");
@@ -27,7 +38,12 @@ export class StudentUI {
         properties.forEach((prop) => {
             const cell = document.createElement("div");
             cell.classList.add("cell");
+            cell.setAttribute("data-type", prop);
             cell.textContent = student[prop];
+            if (prop === "city") {
+                console.log(prop);
+                this.createWeatherDiv(cell);
+            }
             row.appendChild(cell);
         });
         this.addButtons(row);
