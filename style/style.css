@@ -9,6 +9,11 @@ html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
 .row {
     display: flex;
     justify-content: space-between;
@@ -16,7 +21,7 @@ html {
     width: 90%;
     align-self: center;
     font-size: 1.3rem;
-    height: 2.5rem;
+    height: 3rem;
 }
 
 .cell {
@@ -35,7 +40,14 @@ html {
     border: none;
 }
 
+.deleteBtn,
+.editBtn,
+.confirmBtn,
+.cancelBtn {
+    width: 50%;
+}
+
 .btnContainer {
     display: flex;
-    min-width: 10rem;
+    width: 20%;
 }
