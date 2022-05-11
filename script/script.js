@@ -2,22 +2,6 @@ import { StudentsController } from "./StudentsController.js";
 
 export const studentController = await StudentsController.build();
 
-// export const studentController = new StudentsController();
-
-// studentController.studentUI.addRow(
-//     {
-//         0: "id",
-//         1: "name",
-//         2: "last name",
-//         3: "capsule",
-//         4: "age",
-//         5: "city",
-//         6: "gender",
-//         7: "hobby",
-//     },
-//     document.querySelector(".container")
-// );
-
 const studentsArr = studentController.students;
 
 const globalListener = () => {
@@ -77,23 +61,35 @@ const convertToInput = (rowChildren, target) => {
     });
 };
 
-// const studentsArr = await studentController.getStudents();
+const searchListener = () => {
+    const input = document.querySelector("#search");
+    const select = document.querySelector("#searchBy");
+    input.addEventListener("input", (e)=>{
+        searchStudents(e.target.value, select.value);
+    })
+}
+
+const searchStudents = (value, searchType) => {
+    studentsArr.forEach((student) => {
+        let isVisible = false;
+        if(searchType === "everything"){
+            Object.values(student).forEach((prop) => {
+                if(!isVisible){
+                    isVisible = prop.toLowerCase().includes(value.toLowerCase());
+                }
+            })
+        } else {
+            isVisible = student[searchType].toLowerCase().includes(value.toLowerCase());
+        }
+        document.querySelector(`[data-number-${student.id}]`).classList.toggle("hide", !isVisible);
+    })
+}
 
 studentController.createTable();
 
 globalListener();
-
-// const buttons = document.querySelectorAll('.btn')
-// buttons.forEach(function(currentBtn) {
-//     currentBtn.addEventListener('click', deleteRow)
-// })
-
-// function deleteRow(e) {
-//     e.target.parentElement.remove()
-// };
+searchListener();
 
 studentController.sortCol("id", false);
-
-console.log(studentsArr);
 
 studentController.addEventToAllRowsTitle();

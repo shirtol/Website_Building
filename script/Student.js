@@ -12,7 +12,7 @@ export class Student {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.capsule = capsule;
+        this.capsule = capsule.toString();
         this.age = age;
         this.city = city;
         this.gender = gender;
