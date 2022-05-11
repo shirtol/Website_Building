@@ -40,6 +40,7 @@ export class StudentsController {
     constructor(studentsArr) {
         this.students = studentsArr;
         this.studentUI = new StudentUI();
+        this.rowCounter = 0;
     }
 
     sortByProperty = (a, b, property) => {
