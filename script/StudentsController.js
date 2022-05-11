@@ -81,6 +81,9 @@ export class StudentsController {
 
     addEventToAllRowsTitle = () => {
         [...this.studentUI.titleRowEl.children].forEach((cell) => {
+            if (cell.id === "buttons") {
+                return;
+            }
             cell.addEventListener("click", (e) => {
                 if (this.sortOptions.title !== e.target.getAttribute("id")) {
                     this.sortOptions = new SortOptions(
