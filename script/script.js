@@ -72,12 +72,7 @@ const convertToInput = (rowChildren) => {
 
 // const studentsArr = await studentController.getStudents();
 
-studentsArr.forEach((student) => [
-    studentController.studentUI.addRow(
-        student,
-        document.querySelector(".container")
-    ),
-]);
+studentController.createTable();
 
 globalListener();
 
@@ -93,3 +88,5 @@ globalListener();
 studentController.sortCol("id", false);
 
 console.log(studentsArr);
+
+studentController.addEventToAllRowsTitle();
