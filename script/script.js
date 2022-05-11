@@ -1,6 +1,6 @@
 import { StudentsController } from "./StudentsController.js";
 
-const studentController = new StudentsController();
+const studentController = await StudentsController.build();
 
 // studentController.studentUI.addRow(
 //     {
@@ -16,7 +16,7 @@ const studentController = new StudentsController();
 //     document.querySelector(".container")
 // );
 
-const studentsArr = await studentController.getStudents();
+const studentsArr = studentController.students;
 
 studentsArr.forEach((student) => [
     studentController.studentUI.addRow(
@@ -33,3 +33,7 @@ studentsArr.forEach((student) => [
 // function deleteRow(e) {
 //     e.target.parentElement.remove()
 // };
+
+studentController.sortCol("id", false);
+
+console.log(studentsArr);
