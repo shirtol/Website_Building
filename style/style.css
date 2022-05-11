@@ -12,10 +12,9 @@ html {
 .header {
     display: flex;
     justify-content: center;
-    /* flex-direction: column; */
     align-items: center;
     gap: 3rem;
-    margin: 4rem 0;
+    padding: 6rem 0;
 }
 
 #search {
@@ -28,6 +27,7 @@ html {
 
 #searchBy {
     padding: 1rem;
+    border-radius: 4px;
 }
 
 .hide {
@@ -43,16 +43,46 @@ html {
     margin-bottom: 10rem;
 }
 
+.appleseeds {
+    width: 10rem;
+    height: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 #logo {
     font-size: 3rem;
+    color: #4527a0;
 }
 
 .theader:not(#buttons) {
     font-weight: 500;
     font-size: 1.5rem;
-    background: #333;
+    background: #673ab7;
     color: #fff;
     cursor: pointer;
+}
+
+.theader:first-child {
+    border-top-left-radius: 4px;
+}
+
+.theader:nth-last-child(2) {
+    border-top-right-radius: 4px;
+}
+
+.row:last-child .cell:first-child {
+    border-bottom-left-radius: 4px;
+}
+.row:last-child .deleteBtn,
+.row:last-child .confirmBtn {
+    border-bottom-right-radius: 4px;
+}
+
+.row:nth-child(1) .deleteBtn,
+.row:nth-child(1) .confirmBtn {
+    border-top-right-radius: 4px;
 }
 
 .row {
@@ -66,11 +96,11 @@ html {
 }
 
 .row:nth-child(2n) {
-    background: #d3d3d3;
+    background: #ede7f6;
 }
 
 .row:nth-child(2n + 1):not(.headers) {
-    background: #bebebe;
+    background: #b39ddb;
 }
 
 .cell {
@@ -78,7 +108,7 @@ html {
     justify-content: center;
     align-items: center;
     width: 12.5%;
-    border: 1px solid black;
+    border: 1px solid #9575cd;
     height: inherit;
 }
 
@@ -104,7 +134,7 @@ html {
 
 .btn {
     padding: 0.6rem;
-    background-color: #333;
+    background-color: #7e57c2;
     color: #fff;
     cursor: pointer;
 }
@@ -117,7 +147,7 @@ html {
 
 .tbBtn {
     width: 50%;
-    border: dashed 1px #777;
+    border: dashed 1px #b39ddb;
     align-content: center;
 }
 
@@ -134,9 +164,6 @@ html {
     text-align: center;
     justify-content: center;
     align-items: center;
-
-    /* padding: 0 5rem; */
-    /* padding-top: 30rem; */
 }
 
 @media (max-width: 900px) {
