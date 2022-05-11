@@ -19,6 +19,7 @@ export class StudentUI {
         const studentArr = Object.entries(student);
         const row = document.createElement("div");
         row.classList.add("row");
+        row.setAttribute(`data-number-${studentArr[0][1]}`,"");
         studentArr.forEach((e) => {
             const cell = document.createElement("div");
             cell.classList.add("cell");

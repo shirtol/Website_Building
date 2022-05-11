@@ -16,6 +16,9 @@ html {
     margin: 4rem 0;
 }
 
+.hide {
+    display: none !important;
+}
 
 .container{
     display: flex;
