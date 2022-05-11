@@ -23,6 +23,13 @@ const globalListener = () => {
 
 const checkDelete = (target) => {
     if (target.classList.contains("deleteBtn")){
+        const id= target.parentElement.parentElement.firstChild.textContent;
+        for(let i = 0; i < studentsArr.length; i++){
+            if(studentsArr[i].id === id){
+                studentsArr.splice(i,1);
+                break;
+            }
+        }
         target.parentElement.parentElement.remove();
     }
 }
@@ -32,16 +39,27 @@ const cancelOrConfirm = (rowChildren, target) => {
     document.querySelector(`#deleteBtn${target.idNum}`).style.display = "block";
     document.querySelector(`#confirmBtn${target.idNum}`).style.display = "none";
     document.querySelector(`#editBtn${target.idNum}`).style.display = "block";
-    rowChildren.forEach((child) => {
-        if (child.classList.contains("cell")) {
-            if (target.classList.contains("cancelBtn")) {
+    rowChildren.forEach((child, idx) => {
+        if (child.classList.contains("cell") && idx > 0) {
+            if (target.classList.contains("cancelBtn") || child.firstChild.value === child.firstChild.getAttribute("data-value")) {
                 child.textContent = child.firstChild.getAttribute("data-value");
             } else {
                 child.textContent = child.firstChild.value;
+                updateStudentsArr(rowChildren[0].textContent, idx, child.textContent);
             }
         }
     });
 };
+
+const updateStudentsArr = (studentId, propIndex, value) => {
+    const props = Student.props;
+    for(let student of studentsArr){
+        if(student.id === studentId){
+            student[props[propIndex]] = value;
+            break;
+        }
+    }
+}
 
 const convertToInput = (rowChildren, target) => {
     target.nextSibling.style.display = "none";
@@ -49,8 +67,8 @@ const convertToInput = (rowChildren, target) => {
     target.nextSibling.nextSibling.nextSibling.style.display =
                 "block";
     target.style.display = "none";
-    rowChildren.forEach((child) => {
-        if (child.classList.contains("cell")) {
+    rowChildren.forEach((child, idx) => {
+        if (child.classList.contains("cell") && idx > 0) {
             const input = document.createElement("input");
             input.setAttribute("type", "text");
             input.setAttribute("data-value", child.textContent);
