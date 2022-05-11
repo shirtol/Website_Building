@@ -54,6 +54,7 @@ html {
 #logo {
     font-size: 3rem;
     color: #4527a0;
+    /* font-family: "Lato", sans-serif; */
 }
 
 .theader:not(#buttons) {
@@ -110,6 +111,7 @@ html {
     width: 12.5%;
     border: 1px solid #9575cd;
     height: inherit;
+    position: relative;
 }
 
 .inpCell {
@@ -122,9 +124,6 @@ html {
 .btnContainer {
     display: flex;
     width: 12.5%;
-}
-
-.btnContainer > * {
 }
 
 #buttons {
@@ -165,7 +164,23 @@ html {
     justify-content: center;
     align-items: center;
 }
-
+.weather-box {
+    position: absolute;
+    top: 2.6rem;
+    left: 4rem;
+    background: #7c4dff;
+    border-radius: 4px;
+    width: 15rem;
+    height: 5rem;
+    z-index: 10;
+    display: none;
+    color: #fff;
+    font-size: 1.3rem;
+    opacity: 0.8;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
 @media (max-width: 900px) {
     .theader:not(#buttons) {
         font-size: 1.2rem;
