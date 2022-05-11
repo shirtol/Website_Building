@@ -1,6 +1,6 @@
 import { Student } from "./Student.js";
 
-const getFetchedData = async (url) => {
+const getFetchedData = async(url) => {
     try {
         const res = await fetch(url);
         const data = await res.json();
@@ -10,13 +10,13 @@ const getFetchedData = async (url) => {
     }
 };
 
-const getArrOfStudents = async () => {
+const getArrOfStudents = async() => {
     try {
         const data = await getFetchedData(
             "https://capsules-asb6.herokuapp.com/api/teacher/mordi"
         );
         const specificData = await Promise.all(
-            data.map(async (person) => {
+            data.map(async(person) => {
                 const studentData = await getFetchedData(
                     `https://capsules-asb6.herokuapp.com/api/user/${person.id}`
                 );
@@ -36,6 +36,8 @@ const addRow = (student, container) => {
     const studentArr = Object.entries(student);
     const row = document.createElement("div");
     row.classList.add("row");
+    btn.textContent = "delete row"
+    row.appendChild(btn)
     studentArr.forEach((e) => {
         const cell = document.createElement("div");
         cell.classList.add("cell");
@@ -45,8 +47,7 @@ const addRow = (student, container) => {
     container.appendChild(row);
 };
 
-addRow(
-    {
+addRow({
         0: "id",
         1: "name",
         2: "last name",
@@ -62,3 +63,11 @@ addRow(
 students.forEach((student) => [
     addRow(student, document.querySelector(".container")),
 ]);
+const buttons = document.querySelectorAll('.btn')
+buttons.forEach(function(currentBtn) {
+    currentBtn.addEventListener('click', deleteRow)
+})
+
+function deleteRow(e) {
+    e.target.parentElement.remove()
+};
