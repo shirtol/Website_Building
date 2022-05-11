@@ -1,4 +1,7 @@
 export class Student {
+    static get props(){
+        return ["id", "firstName", "lastName", "capsule", "age", "city", "gender", "hobby"];
+    }
     constructor({
         id,
         firstName,
@@ -17,5 +20,6 @@ export class Student {
         this.city = city;
         this.gender = gender;
         this.hobby = hobby;
+        this.visibility = true;
     }
 }

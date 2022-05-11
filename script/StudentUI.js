@@ -1,4 +1,5 @@
 import { studentController } from "./script.js";
+import { Student } from "./Student.js";
 
 export class StudentUI {
     constructor() {
@@ -16,14 +17,14 @@ export class StudentUI {
     };
 
     addRow = (student, container) => {
-        const studentArr = Object.entries(student);
+        const properties = Student.props;
         const row = document.createElement("div");
         row.classList.add("row");
-        row.setAttribute(`data-number-${studentArr[0][1]}`,"");
-        studentArr.forEach((e) => {
+        row.setAttribute(`data-number-${student.id}`,"");
+        properties.forEach((prop) => {
             const cell = document.createElement("div");
             cell.classList.add("cell");
-            cell.textContent = e[1];
+            cell.textContent = student[prop];
             row.appendChild(cell);
         });
         this.addButtons(row);

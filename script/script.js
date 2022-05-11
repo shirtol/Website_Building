@@ -1,4 +1,5 @@
 import { StudentsController } from "./StudentsController.js";
+import { Student } from "./Student.js";
 
 export const studentController = await StudentsController.build();
 
@@ -70,17 +71,19 @@ const searchListener = () => {
 }
 
 const searchStudents = (value, searchType) => {
+    const props = Student.props;
     studentsArr.forEach((student) => {
         let isVisible = false;
         if(searchType === "everything"){
-            Object.values(student).forEach((prop) => {
+            props.forEach((prop) => {
                 if(!isVisible){
-                    isVisible = prop.toLowerCase().includes(value.toLowerCase());
+                    isVisible = student[prop].toLowerCase().includes(value.toLowerCase());
                 }
             })
         } else {
             isVisible = student[searchType].toLowerCase().includes(value.toLowerCase());
         }
+        student.visibility = isVisible;
         document.querySelector(`[data-number-${student.id}]`).classList.toggle("hide", !isVisible);
     })
 }
