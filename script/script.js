@@ -1,6 +1,6 @@
 import { StudentsController } from "./StudentsController.js";
 
-const studentController = new StudentsController();
+export const studentController = new StudentsController();
 
 // studentController.studentUI.addRow(
 //     {
@@ -16,6 +16,52 @@ const studentController = new StudentsController();
 //     document.querySelector(".container")
 // );
 
+const globalListener = () =>{
+    document.querySelector(".container").addEventListener("click", (e)=>{
+        const childrenArr = [...e.target.parentElement.parentElement.children];
+        if(e.target.classList.contains("editBtn")){
+            e.target.nextSibling.style.display = "none";
+            e.target.nextSibling.nextSibling.style.display = "block";
+            e.target.nextSibling.nextSibling.nextSibling.style.display = "block";
+            e.target.style.display = "none";
+            convertToInput(childrenArr);
+        }
+        if(e.target.classList.contains("cancelBtn") || e.target.classList.contains("confirmBtn")){
+            cancelOrConfirm(childrenArr, e.target);
+        }
+    })
+}
+
+const cancelOrConfirm = (rowChildren, target) =>{
+    document.querySelector(`#cancelBtn${target.idNum}`).style.display = "none";
+    document.querySelector(`#deleteBtn${target.idNum}`).style.display = "block";
+    document.querySelector(`#confirmBtn${target.idNum}`).style.display = "none";
+    document.querySelector(`#editBtn${target.idNum}`).style.display = "block";
+    rowChildren.forEach((child) =>{
+        if(child.classList.contains("cell")){
+            if(target.classList.contains("cancelBtn")){
+                child.textContent = child.firstChild.getAttribute("data-value");
+            } else{
+                child.textContent = child.firstChild.value;
+            }
+        }
+    })
+}
+
+const convertToInput = (rowChildren) =>{
+    rowChildren.forEach((child) =>{
+        if(child.classList.contains("cell")){
+            const input = document.createElement("input");
+            input.setAttribute("type","text");
+            input.setAttribute("data-value", child.textContent);
+            input.value = child.textContent;
+            child.textContent = "";
+            input.classList.add("inpCell");
+            child.appendChild(input);
+        }
+    })
+}
+
 const studentsArr = await studentController.getStudents();
 
 studentsArr.forEach((student) => [
@@ -24,6 +70,8 @@ studentsArr.forEach((student) => [
         document.querySelector(".container")
     ),
 ]);
+
+globalListener();
 
 // const buttons = document.querySelectorAll('.btn')
 // buttons.forEach(function(currentBtn) {

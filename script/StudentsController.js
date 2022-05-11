@@ -5,6 +5,7 @@ export class StudentsController {
     constructor() {
         this.getStudents = async () => await this.getArrOfStudents();
         this.studentUI = new StudentUI();
+        this.rowCounter = 0;
     }
 
     getFetchedData = async (url) => {
