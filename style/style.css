@@ -54,6 +54,7 @@ html {
 #logo {
     font-size: 3rem;
     color: #4527a0;
+    /* font-family: "Lato", sans-serif; */
 }
 
 .theader:not(#buttons) {
@@ -122,9 +123,6 @@ html {
 .btnContainer {
     display: flex;
     width: 12.5%;
-}
-
-.btnContainer > * {
 }
 
 #buttons {
