@@ -25,8 +25,11 @@ studentsArr.forEach((student) => [
     ),
 ]);
 
-console.log(studentsArr);
+// const buttons = document.querySelectorAll('.btn')
+// buttons.forEach(function(currentBtn) {
+//     currentBtn.addEventListener('click', deleteRow)
+// })
 
-studentController.sortCol("id", true);
-
-console.log(studentsArr);
+// function deleteRow(e) {
+//     e.target.parentElement.remove()
+// };
