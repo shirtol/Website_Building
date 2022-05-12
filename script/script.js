@@ -116,13 +116,13 @@ const searchStudents = (value, searchType) => {
                 if (!isVisible) {
                     isVisible = student[prop]
                         .toLowerCase()
-                        .includes(value.toLowerCase());
+                        .startsWith(value.toLowerCase());
                 }
             });
         } else {
             isVisible = student[searchType]
                 .toLowerCase()
-                .includes(value.toLowerCase());
+                .startsWith(value.toLowerCase());
         }
         student.visibility = isVisible;
         document
