@@ -1,6 +1,15 @@
 export class Student {
-    static get props(){
-        return ["id", "firstName", "lastName", "capsule", "age", "city", "gender", "hobby"];
+    static get props() {
+        return [
+            "id",
+            "firstName",
+            "lastName",
+            "capsule",
+            "age",
+            "city",
+            "gender",
+            "hobby",
+        ];
     }
     constructor({
         id,
@@ -13,7 +22,7 @@ export class Student {
         hobby,
     }) {
         this.id = id;
-        this.firstName = firstName;
+        this.firstName = firstName.trim();
         this.lastName = lastName;
         this.capsule = capsule.toString();
         this.age = age;
