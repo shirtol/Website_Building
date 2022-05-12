@@ -41,7 +41,6 @@ export class StudentUI {
             cell.setAttribute("data-type", prop);
             cell.textContent = student[prop];
             if (prop === "city") {
-                console.log(prop);
                 this.createWeatherDiv(cell);
             }
             row.appendChild(cell);

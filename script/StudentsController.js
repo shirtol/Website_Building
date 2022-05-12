@@ -49,8 +49,6 @@ export class StudentsController {
 
     sortByProperty = (a, b, property) => {
         if (property === "name" || property === "last-name") {
-            console.log(a);
-            console.log(property);
             return a[property].localeCompare(b[property], "heb");
         } else if (property === "hobby") {
             if (a[property].toLowerCase() < b[property].toLowerCase())
